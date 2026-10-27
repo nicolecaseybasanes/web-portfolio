@@ -12,7 +12,7 @@ const activitiesData = {
   Finals: [
     { id: 4, title: 'Introduction to Javascript', category: 'Finals', type: 'Javascript', desc: 'A comprehensive deep dive into Javascript.', mockColor: 'bg-amber-300 dark:bg-amber-900/50' , link: '/lab/finals/act-1/html/index.html'},
     { id: 5, title: 'Introduction to JQuery', category: 'Finals', type: 'JQuery', desc: 'This file is currently corrupted.', mockColor: 'bg-emerald-300 dark:bg-emerald-900/50', link: '/lab/midterm/act-2/index.html' },
-    { id: 6, title: 'Student Information', category: 'Finals', type: 'JQuery', desc: 'Student Information with DOM manipulation.', mockColor: 'bg-sky-300 dark:bg-sky-900/50', link: '/lab/midterm/act-3/index.html' },
+    { id: 6, title: 'Student Information', category: 'Finals', type: 'JQuery', desc: 'Student Information with DOM manipulation.', mockColor: 'bg-sky-300 dark:bg-sky-900/50', link: '/lab/finals/act-3/index.html' },
     { id: 7, title: 'E-HAW', category: 'Finals', type: 'Case Study', desc: 'A web-based ordering system for 4 M.E Bacolod Inasal.', mockColor: 'bg-indigo-300 dark:bg-indigo-900/50' , link: 'https://e-haw-system-for-4me-bacolod-inasal.vercel.app'},
   ]
 };
