@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light Mode Tokens */
+  --bg-light: #f2f4f0;
+  --surface-light: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-muted: #5c6b62;
+  --accent-mint: #2e7d32;
+  
+  /* Neumorphic Shadows - Light Mode */
+  --shadow-light: -6px -6px 12px rgba(255, 255, 255, 0.9);
+  --shadow-dark: 6px 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  /* Dark Mode Tokens */
+  --bg-dark: #0f1412;
+  --surface-dark: #1a221e;
+  --text-primary-dark: #ffffff;
+  --text-muted-dark: #8a9c93;
+  --accent-mint-glow: #d1fae5; 
+  
+  /* Neumorphic Shadows - Dark Mode */
+  --shadow-light-dark: -6px -6px 12px rgba(255, 255, 255, 0.03);
+  --shadow-dark-dark: 6px 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.dark body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary-dark);
+}
+
+.neu-card {
+  background: var(--surface-light);
+  box-shadow: var(--shadow-dark), var(--shadow-light);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.dark .neu-card {
+  background: var(--surface-dark);
+  box-shadow: var(--shadow-dark-dark), var(--shadow-light-dark);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
