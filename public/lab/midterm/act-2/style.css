@@ -1,0 +1,173 @@
+*{
+    margin:0;
+    padding:0;
+    
+}
+
+
+
+
+.homeheader{
+background-color: rgb(68, 107, 68);
+padding: 20px;
+margin:20px;
+text-align: center;
+margin-bottom: 0;
+color:rgb(255, 255, 255)
+
+}
+
+
+.regheader{
+background-color: rgb(68, 107, 68);
+padding: 20px;
+margin:20px;
+text-align: center;
+margin-bottom: 0;
+color:rgb(255, 255, 255)
+}
+
+
+.gradesheader{
+background-color: rgb(68, 107, 68);
+padding: 20px;
+margin:20px;
+text-align: center;
+margin-bottom: 0;
+color:rgb(255, 255, 255)
+}
+
+.profileheader{
+background-color: rgb(68, 107, 68);
+padding: 20px;
+margin:20px;
+text-align: center;
+margin-bottom: 0;
+color:rgb(255, 255, 255)
+}
+
+
+.homenav{
+background-color: rgb(231, 255, 231);
+display: flex;
+padding: 20px;
+margin:20px;
+margin-top: 0;
+text-align: center;
+justify-content: space-evenly;
+text-decoration: none;
+font-weight: bold;
+
+}
+
+
+.regnav{
+background-color: rgb(231, 255, 231);
+display: flex;
+padding: 20px;
+margin:20px;
+margin-top: 0;
+text-align: center;
+justify-content: space-evenly;
+text-decoration: none;
+color:rgb(255, 255, 255);
+transition: 0.3s;
+
+}
+
+.gradesnav{
+background-color: rgb(231, 255, 231);
+display: flex;
+padding: 20px;
+margin:20px;
+margin-top: 0;
+text-align: center;
+justify-content: space-evenly;
+text-decoration: none;
+color:rgb(255, 255, 255);
+transition: 0.3s;
+}
+
+
+
+.profilenav{
+background-color: rgb(231, 255, 231);
+display: flex;
+padding: 20px;
+margin:20px;
+margin-top: 0;
+text-align: center;
+justify-content: space-evenly;
+text-decoration: none;
+color:rgb(255, 255, 255);
+transition: 0.3s;
+}
+
+.container{
+display:flex;
+}
+
+.homemain{
+background-color: rgb(255, 255, 218);
+flex: 1;
+margin-top: 0;
+margin-bottom: 0;
+padding: 75px;
+margin:20px;
+}
+
+.homeaside{
+background-color: rgb(255, 255, 218);
+flex:3;
+margin-top: 0;
+margin-bottom: 0;
+padding: 50px;
+margin:20px;
+}
+
+.card{
+    background: #fff;
+    padding:20px;
+    border-radius: 10px;
+    max-width: 700px;
+    margin:auto;
+    box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+
+.homefooter{
+background-color: rgb(68, 107, 68);
+padding: 20px;
+margin:20px;
+text-align: center;
+margin-top: 0;
+color:rgb(255, 255, 255)
+}
+
+
+.regfooter{
+background-color: rgb(68, 107, 68);
+padding: 20px;
+margin:20px;
+text-align: center;
+margin-top: 0;
+color:rgb(255, 255, 255)
+}
+
+.gradesfooter{
+background-color: rgb(68, 107, 68);
+padding: 20px;
+margin:20px;
+text-align: center;
+margin-top: 0;
+color:rgb(255, 255, 255)
+}
+
+
+.profilefooter{
+background-color: rgb(68, 107, 68);
+padding: 20px;
+margin:20px;
+text-align: center;
+margin-top: 0;
+color:rgb(255, 255, 255)
+}

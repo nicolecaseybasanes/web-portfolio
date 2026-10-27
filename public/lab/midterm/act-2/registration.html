@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+     <link rel="stylesheet" href="style.css" class="rel">
+</head>
+
+
+
+
+<body>
+
+
+    <!--Header-->
+    <header>
+    <div class="regheader">
+    <h1>My Personal Website </h1>
+    <h5>Welcome to my Personal Student Portal</h5>
+    </div>
+    </header>
+
+
+
+     <!--Navigations-->
+    <nav>
+        <div class="regnav">
+        <a href="homepage.html">Home</a>
+        <a href="registration.html">Registration</a>
+        <a href="grades.html">Grades</a>
+        <a href="profile.html">Profile</a>
+        </div>
+    </nav>
+
+
+
+    <!--Main Content--->
+        <section>
+            <div class="card">
+            <article>
+            <form >
+
+
+            <!---Input form-->    
+            Full Name : <br>
+            <input type="text" name="full_name" placeholder="Last Name, First Name MI."/>
+            <br>
+            Password:<br>
+            <input type="password" name="password" placeholder="Enter your password" />
+            <br>
+            Email:<br>
+            <input type="email" name="email" placeholder="@gmail.com"/>
+            <br>
+            Age:<br>
+            <input type="number" name="age" placeholder="enter your age"/>
+
+
+
+
+            <br><br>
+            <!--Radio Button-->
+            Gender:<br>
+            <input type="radio" name="Gender" value="Male"> Male
+            <input type="radio" name="Gender" value="Female"> Female
+
+            
+            <br>
+            <br>
+            <!---Drop down-->
+            Year Level: <br>
+            <select name="dropdown">
+            <option value="Freshman" selected>Freshman</option>
+            <option value="Sophomore">Sophomore</option>
+            <option value="Junior" selected>Junior</option>
+            <option value="Senior">Senior</option>
+
+
+            <br>
+            <!--Checkbox-->
+            <br>
+            Skills:<br>
+            <input type="checkbox" name="Maths" value="on"> Maths
+            <input type="checkbox" name="physics" value="on"> Physics
+            <input type="checkbox" name="english" value="on"> english
+            <input type="checkbox" name="science" value="on"> science
+
+
+            <br>
+            <!--Multi-Line--->
+            Description : <br />
+            <textarea rows="5" cols="50" name="description" placeholder=” Enter description here...”></textarea>
+
+
+            <br>
+            <br>
+
+            <!--File Upload-->
+            Upload your photo:<br>
+            <input type="file" name="fileupload" accept="image/*" />
+
+            
+            <br>
+            <br>
+            <!--Buttons-->
+            <input type="submit" name="submit" value="Submit" />
+            <input type="reset" name="reset"  value="Reset" />
+            <input type="button" name="ok" value="OK" />
+            <input type="image" name="imagebutton" src="picture.png" />
+
+
+            <br>
+            <br>
+
+            </form>
+            </article>
+
+
+        </div>
+        </section>
+
+
+        <!--Footer-->
+       <footer>
+          <div class="regfooter">
+          <h3>@ 2026 My Personal Website</h3>
+          </div>
+       </footer>
+
+
+    
+</body>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,152 @@
+*{
+    margin:0;
+    padding:0;
+    
+}
+
+
+
+header{
+background-color: rgb(68, 107, 68);
+padding: 20px;
+margin:0%;
+color: azure;
+list-style: none;
+display: flex;
+align-items: center;
+justify-content: space-between;
+position: sticky;
+top: 0;
+
+}
+
+.headername{
+display: flex;
+justify-content: flex-start;
+
+
+}
+
+.homenav{
+    display:flex;
+    justify-content: flex-end;
+    list-style: none;
+    gap: 50px;
+    
+   
+}
+
+.homenav a{
+    text-decoration: none;
+    color: azure;
+    
+    
+    
+   
+    
+}
+
+.homenav a:hover{
+    color:yellow
+  
+    
+}
+
+
+
+
+.homefooter{
+background-color: rgb(68, 107, 68);
+padding: 20px;
+margin:0%;
+text-align: center;
+margin-top: 0;
+color:rgb(255, 255, 255)
+
+}
+
+.homemain{
+padding: 60px 40px;
+}
+
+#home{
+    background-color: rgb(222, 255, 222);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 60px 40px;
+     margin: 20px;
+
+
+}
+
+#home h2{
+    display: flex;
+    justify-content: flex-start;
+    
+   
+}
+
+#home p{
+   display: flex;
+   justify-content: flex-start;
+    
+    
+}
+
+
+#home img{
+    border-radius: 65px;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+
+}
+
+
+#aboutme{
+    background-color: rgb(214, 255, 214);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 20px;
+   
+}
+
+#aboutme img{
+    border-radius: 65px;
+    display: flex;
+    justify-content:space-evenly;
+    margin-left: auto;
+}
+
+#projects{
+    background-color: rgb(214, 255, 214);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+#projects img{
+    border-radius: 65px;
+    display: flex;
+    justify-content:space-evenly;
+    margin-left: auto;
+}
+
+#contacts{
+    background-color: rgb(214, 255, 214);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 20px;
+}

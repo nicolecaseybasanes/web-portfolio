@@ -1,0 +1,49 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color:rgb(128, 150, 90);
+    padding-left: 400px;
+    padding-top: 50px;
+    box-shadow: 10px;
+}
+
+
+.form{
+    
+    
+    margin: 20px;
+    padding-top: 20px;
+    text-align: center;
+    background-color: aliceblue;
+    width: 500px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 10px;
+    
+
+}
+
+#Year, #input{
+    width: 300px;
+}
+
+#Image{
+    border-radius: 15px;
+}
+
+#btn1, #db{
+    width: 100px;
+    background-color: cadetblue;
+    color:antiquewhite;
+    border-radius: 5px;
+}
+
+
+
+#indicator{
+    color:blue;
+}

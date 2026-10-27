@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 50px;
+        text-align: center;
+        color: rgb(0, 0, 0);
+        background-color: rgb(119, 110, 110);
+        margin-top: 150px;
+
+    }
+    .card{
+        background-color: rgb(250, 250, 250);
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        border: solid 2px rgb(0, 0, 0);
+        height: 1050px;
+        width: 600px;
+        
+    }
+    button{
+        background-color: rgb(0, 0, 0);
+        border-radius: 5px;
+        padding: 10px;
+        border:none;
+        color: white
+    }
+    .studentinfo{
+        text-align: left;
+        background-color: rgb(231, 231, 231);
+        padding: 10px;
+        border-radius: 5px;
+    }
+    #outputdetector{
+        background-color:rgb(26, 4, 4);
+        background-color: rgb(231, 231, 231);
+        padding:10px;
+    }
+    #course{
+        border-radius: 5px;
+        padding: 10px;
+        width: 600px;
+
+    }
+    #courselabel{
+        text-align: left;
+        background-color: rgb(231, 231, 231);
+        padding: 10px;
+    }
+    #coursetitle{
+        text-align: left;
+    }
+
+    table{
+        width:100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0,1);
+
+    }
+    thead{
+        background-color: #3a3a3a;
+        color: white;
+    }
+    th,td{
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+
+   
+</style>
+
+<body>
+    <div class = "card">
+
+        <h1 id="title">Hello, BSIT31C</h1>
+        <p id="header">Welcome to my Interactive Portfolio!</p>
+
+        <!--- Student Info -->
+        <div class="studentinfo">
+            <h2>Student Information</h2>
+            <p>Name: Juan </p>
+            <p id="studcourse">Course: BSIT</p>
+            <p>Year Level: 3rd Year</p>
+        </div>
+
+        <!------- Buttons ------------>
+        <br>
+        <button id="changetitle"> Change Title</button>
+        <button id="hideprofile"> Hide Profile</button>
+        <button id="showprofile"> Show Profile</button>
+
+        <!--------- Output Detector -------->
+        <br>
+        <p id="outputdetector">Currently, no action.</p>
+
+
+        <!---- Choose Course -->
+        <h3 id="coursetitle">Choose Your Course</h3>
+        <select id ="course">
+            <option selected="true" disabled="true">Pick your course</option>
+            <option value="Bachelor of Science in Information Tech">Bachelor of Science in Information Technology</option>
+            <option value="Bachelor of Science in CS">Bachelor of Science in Computer Science</option>
+        </select>
+
+        <!------------ Course Output Detect ---------------->
+        <h5 id="courselabel">No Course Selected</h5>
+
+        <!----------------- Student List -------------------->
+        <h3 id="coursetitle">Student List</h3>
+        <h6 id="coursetitle">Registered Students:</h6>
+
+        <!------------------ Table --------------------------->
+        <table id="studentTable">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Year Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="trodd">
+                    <td>1</td>
+                    <td>Juan</td>
+                    <td>BSIT</td>
+                    <td>3rd Year</td>
+                </tr>
+                <tr id="treven">
+                    <td>2</td>
+                    <td>Maria</td>
+                    <td>BSCS</td>
+                    <td>3rd Year</td>
+                </tr>
+                <tr id="trrodd">
+                    <td>3</td>
+                    <td>Pedro</td>
+                    <td>BSIS</td>
+                    <td>2nd Year</td>
+                </tr>
+                <tr id="trreven">
+                    <td>4</td>
+                    <td>Ana</td>
+                    <td>BSIT</td>
+                    <td>3rd Year</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h6 id="coursetitle">End of Student List</h6>
+
+        <!------------- button ---------------------->
+        <button id="odd"> Apply Odd Rows</button>
+        <button id="even"> Apply Even Rows</button>
+
+        <!------------- Table Label ----------------->
+        <h5 id="tablelabel">Choose an action for the table.</h5>
+
+
+
+
+
+        
+    </div>
+   
+    <script src="script.js"></script>
+</body>
+</html>
