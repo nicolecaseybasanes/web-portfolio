@@ -5,25 +5,23 @@ import ProjectModal from './ProjectModal';
 
 const activitiesData = {
   Midterm: [
-    { id: 1, title: 'Introduction to HTML', category: 'Midterm', type: 'HTML and CSS', desc: 'A foundational activity covering HTML structure and CSS styling.', mockColor: 'bg-blue-300 dark:bg-blue-900/50', link: '/lab/midterm/act-1/registration.html' },
-    { id: 2, title: 'Activity 2', category: 'Midterm', type: 'HTML & CSS', desc: 'Responsive product grid utilizing CSS Grid and Flexbox for modern retail flows.', mockColor: 'bg-rose-300 dark:bg-rose-900/50', link: '/lab/midterm/act-2/homepage.html' },
-    { id: 3, title: 'Activity 3', category: 'Midterm', type: 'HTML and CSS', desc: 'A landing page layout focusing on modern UI patterns.', mockColor: 'bg-purple-300 dark:bg-purple-900/50', link: '/lab/midterm/act-3/landingpage.html' },
+    { id: 1, title: 'Introduction to HTML', category: 'Midterm', type: 'HTML and CSS', desc: 'A foundational exercise focusing on semantic HTML structure and basic CSS styling to build a clean, functional user registration form..', mockColor: 'bg-blue-300 dark:bg-blue-900/50', link: '/lab/midterm/act-1/registration.html', image: '/images/midterm-1.png' },
+    { id: 2, title: 'Activity 2', category: 'Midterm', type: 'HTML & CSS', desc: 'A responsive personal portal layout utilizing CSS Grid and Flexbox to organize multi-page navigation, sidebars, and main content areas.', mockColor: 'bg-rose-300 dark:bg-rose-900/50', link: '/lab/midterm/act-2/homepage.html',image: '/images/midterm-2.png' },
+    { id: 3, title: 'Activity 3', category: 'Midterm', type: 'HTML and CSS', desc: 'A modern, single-page landing page designed to showcase a personal profile, and distinct sections for skills, projects, and contact..', mockColor: 'bg-purple-300 dark:bg-purple-900/50', link: '/lab/midterm/act-3/landingpage.html',image: '/images/midterm-3.png' },
   ],
   Finals: [
-    { id: 4, title: 'Introduction to Javascript', category: 'Finals', type: 'Javascript', desc: 'A comprehensive deep dive into Javascript.', mockColor: 'bg-amber-300 dark:bg-amber-900/50' , link: '/lab/finals/act-1/html/index.html'},
-    { id: 5, title: 'Introduction to JQuery', category: 'Finals', type: 'JQuery', desc: 'This file is currently corrupted.', mockColor: 'bg-emerald-300 dark:bg-emerald-900/50', link: '/lab/midterm/act-2/index.html' },
-    { id: 6, title: 'Student Information', category: 'Finals', type: 'JQuery', desc: 'Student Information with DOM manipulation.', mockColor: 'bg-sky-300 dark:bg-sky-900/50', link: '/lab/finals/act-3/index.html' },
-    { id: 7, title: 'E-HAW', category: 'Finals', type: 'Case Study', desc: 'A web-based ordering system for 4 M.E Bacolod Inasal.', mockColor: 'bg-indigo-300 dark:bg-indigo-900/50' , link: 'https://e-haw-system-for-4me-bacolod-inasal.vercel.app'},
+    { id: 4, title: 'Introduction to Javascript', category: 'Finals', type: 'Javascript', desc: 'An introductory JavaScript exercise demonstrating fundamental DOM manipulation and event handling through an interactive, styled form interface.', mockColor: 'bg-amber-300 dark:bg-amber-900/50' , link: '/lab/finals/act-1/html/index.html',image: '/images/finals-1.png'},
+    { id: 5, title: 'Introduction to JQuery', category: 'Finals', type: 'JQuery', desc: 'This file is currently corrupted.', mockColor: 'bg-emerald-300 dark:bg-emerald-900/50', link: '/lab/midterm/act-2/index.html',image: '/images/finals-2.png' },
+    { id: 6, title: 'Student Information', category: 'Finals', type: 'JQuery', desc: 'An interactive dashboard featuring dynamic table manipulation, where users can toggle row colors and update profile information using jQuery.', mockColor: 'bg-sky-300 dark:bg-sky-900/50', link: '/lab/finals/act-3/index.html',image: '/images/finals-3.png' },
+    { id: 7, title: 'E-HAW', category: 'Finals', type: 'Case Study', desc: 'A web-based ordering system for 4 M.E Bacolod Inasal.', mockColor: 'bg-indigo-300 dark:bg-indigo-900/50' , link: 'https://e-haw-system-for-4me-bacolod-inasal.vercel.app',image: '/images/finals-4.png'},
   ]
 };
 
 export default function LabCarousel() {
-  const [activeFilter, setActiveFilter] = useState('Midterm');
+  const [activeFilter, setActiveFilter] = useState('Finals'); 
   const [currentIndex, setCurrentIndex] = useState(0);
   
-  // State to track if a project is currently being viewed in the modal
   const [selectedProject, setSelectedProject] = useState(null);
-
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
 
@@ -42,7 +40,6 @@ export default function LabCarousel() {
     setCurrentIndex(0); 
   };
 
-  // Swipe Handlers
   const handleTouchStart = (e) => setTouchStart(e.targetTouches[0].clientX);
   const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
   const handleTouchEnd = () => {
@@ -57,20 +54,21 @@ export default function LabCarousel() {
   return (
     <div className="w-full max-w-[1400px] mx-auto px-4 pt-32 pb-24 overflow-hidden relative">
       
-      {/* Header & Filters */}
-      <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-12 md:mb-16 gap-6 px-6">
+      {/* Header & Filters (Now aligned to the left) */}
+      <div className="flex flex-col mb-12 md:mb-16 px-6">
         <div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 transition-colors">
-            Computer laboratory <br />
+             Computer Laboratory <br />
             <span className="italic font-serif text-[var(--accent-mint)] dark:text-[var(--accent-mint-glow)]">
               Activities
             </span>
           </h2>
-          <p className="text-gray-500 dark:text-gray-400 max-w-md text-sm transition-colors">
-            A closer look at my Web Development progress. Swipe left and right to see my works.
+          <p className="text-gray-500 dark:text-gray-400 max-w-md text-sm transition-colors mb-6">
+            
           </p>
         </div>
 
+        {/* MOVED HERE: Now stacks below the description on the left */}
         <div className="flex items-center gap-3">
           <button 
             onClick={() => handleFilterChange('Midterm')}
@@ -106,14 +104,13 @@ export default function LabCarousel() {
           onTouchEnd={handleTouchEnd}
         >
           {currentActivities.map((activity, index) => {
-            // Robust math to handle any number of slides smoothly
             let offset = (index - currentIndex + currentActivities.length) % currentActivities.length;
             let position = offset;
             
             if (offset === currentActivities.length - 1) {
-              position = -1; // The last item wraps to the left
+              position = -1; 
             } else if (offset > 1) {
-              position = 2; // Items further out are hidden off-screen
+              position = 2; 
             }
 
             return (
@@ -132,7 +129,6 @@ export default function LabCarousel() {
                   if (position !== 0) setCurrentIndex(index);
                 }}
               >
-                {/* PASS THE MODAL OPENER TO THE CARD */}
                 <ActivityCard 
                   activity={activity} 
                   isActive={position === 0} 
@@ -176,7 +172,7 @@ export default function LabCarousel() {
         ))}
       </div>
 
-      {/* RENDER THE MODAL HERE */}
+      {/* Render Modal */}
       <ProjectModal 
         project={selectedProject} 
         onClose={() => setSelectedProject(null)} 
