@@ -16,7 +16,7 @@ export default function Hero() {
         
         {/* Main Headline */}
         <h1 className="text-5xl md:text-7xl font-semibold leading-tight max-w-4xl text-gray-900 dark:text-white mb-2 transition-colors duration-300">
-          I design digital <br /> experiences that feel
+          I love designing <br /> interfaces that is
         </h1>
 
         {/* Italic Serif Sub-headline */}

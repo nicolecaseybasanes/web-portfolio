@@ -1,173 +1,85 @@
-*{
-    margin:0;
-    padding:0;
-    
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* CRITICAL: Prevents padding from breaking widths */
 }
 
-
-
-
-.homeheader{
-background-color: rgb(68, 107, 68);
-padding: 20px;
-margin:20px;
-text-align: center;
-margin-bottom: 0;
-color:rgb(255, 255, 255)
-
+body {
+    font-family: Arial, sans-serif;
+    /* Added a wrapper padding so margins don't push the page off-screen */
+    padding: 10px; 
 }
 
-
-.regheader{
-background-color: rgb(68, 107, 68);
-padding: 20px;
-margin:20px;
-text-align: center;
-margin-bottom: 0;
-color:rgb(255, 255, 255)
+/* --- HEADERS --- */
+.homeheader, .regheader, .gradesheader, .profileheader {
+    background-color: rgb(68, 107, 68);
+    padding: 20px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    border-radius: 10px 10px 0 0; /* Optional: rounds the top corners */
 }
 
-
-.gradesheader{
-background-color: rgb(68, 107, 68);
-padding: 20px;
-margin:20px;
-text-align: center;
-margin-bottom: 0;
-color:rgb(255, 255, 255)
+/* --- NAVIGATION --- */
+.homenav, .regnav, .gradesnav, .profilenav {
+    background-color: rgb(231, 255, 231);
+    display: flex;
+    flex-wrap: wrap; /* CRITICAL: Allows links to wrap on small screens */
+    gap: 15px; /* Adds space between links instead of margins */
+    padding: 20px;
+    text-align: center;
+    justify-content: space-evenly;
+    font-weight: bold;
 }
 
-.profileheader{
-background-color: rgb(68, 107, 68);
-padding: 20px;
-margin:20px;
-text-align: center;
-margin-bottom: 0;
-color:rgb(255, 255, 255)
+/* --- LAYOUT CONTAINER --- */
+.container {
+    display: flex;
+    gap: 20px; /* Space between main and aside */
+    margin: 20px 0; /* Space above and below the container */
 }
 
-
-.homenav{
-background-color: rgb(231, 255, 231);
-display: flex;
-padding: 20px;
-margin:20px;
-margin-top: 0;
-text-align: center;
-justify-content: space-evenly;
-text-decoration: none;
-font-weight: bold;
-
-}
-
-
-.regnav{
-background-color: rgb(231, 255, 231);
-display: flex;
-padding: 20px;
-margin:20px;
-margin-top: 0;
-text-align: center;
-justify-content: space-evenly;
-text-decoration: none;
-color:rgb(255, 255, 255);
-transition: 0.3s;
-
-}
-
-.gradesnav{
-background-color: rgb(231, 255, 231);
-display: flex;
-padding: 20px;
-margin:20px;
-margin-top: 0;
-text-align: center;
-justify-content: space-evenly;
-text-decoration: none;
-color:rgb(255, 255, 255);
-transition: 0.3s;
-}
-
-
-
-.profilenav{
-background-color: rgb(231, 255, 231);
-display: flex;
-padding: 20px;
-margin:20px;
-margin-top: 0;
-text-align: center;
-justify-content: space-evenly;
-text-decoration: none;
-color:rgb(255, 255, 255);
-transition: 0.3s;
-}
-
-.container{
-display:flex;
-}
-
-.homemain{
-background-color: rgb(255, 255, 218);
-flex: 1;
-margin-top: 0;
-margin-bottom: 0;
-padding: 75px;
-margin:20px;
-}
-
-.homeaside{
-background-color: rgb(255, 255, 218);
-flex:3;
-margin-top: 0;
-margin-bottom: 0;
-padding: 50px;
-margin:20px;
-}
-
-.card{
-    background: #fff;
-    padding:20px;
+.homemain {
+    background-color: rgb(255, 255, 218);
+    flex: 1;
+    padding: 30px; /* Reduced from 75px */
     border-radius: 10px;
+}
+
+.homeaside {
+    background-color: rgb(255, 255, 218);
+    flex: 3;
+    padding: 30px; /* Reduced from 50px */
+    border-radius: 10px;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%; /* Changed from max-width 700px to 100% */
     max-width: 700px;
-    margin:auto;
+    margin: 0 auto;
     box-shadow: 0 2px 6px rgba(0,0,0,.2);
 }
 
-.homefooter{
-background-color: rgb(68, 107, 68);
-padding: 20px;
-margin:20px;
-text-align: center;
-margin-top: 0;
-color:rgb(255, 255, 255)
+/* --- FOOTERS --- */
+.homefooter, .regfooter, .gradesfooter, .profilefooter {
+    background-color: rgb(68, 107, 68);
+    padding: 20px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    border-radius: 0 0 10px 10px; /* Optional: rounds the bottom corners */
 }
 
-
-.regfooter{
-background-color: rgb(68, 107, 68);
-padding: 20px;
-margin:20px;
-text-align: center;
-margin-top: 0;
-color:rgb(255, 255, 255)
-}
-
-.gradesfooter{
-background-color: rgb(68, 107, 68);
-padding: 20px;
-margin:20px;
-text-align: center;
-margin-top: 0;
-color:rgb(255, 255, 255)
-}
-
-
-.profilefooter{
-background-color: rgb(68, 107, 68);
-padding: 20px;
-margin:20px;
-text-align: center;
-margin-top: 0;
-color:rgb(255, 255, 255)
+/* =========================================
+   MOBILE RESPONSIVENESS (Screens < 768px)
+   ========================================= */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stacks Main and Aside vertically on mobile */
+    }
+    
+    .homemain, .homeaside {
+        padding: 20px; /* Reduces padding further on small screens */
+    }
 }

@@ -1,49 +1,65 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-body{
-    background-color:rgb(128, 150, 90);
-    padding-left: 400px;
-    padding-top: 50px;
-    box-shadow: 10px;
+body {
+    background-color: rgb(128, 150, 90);
+    
+    /* RESPONSIVE CENTERING */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Adds breathing room on small screens */
 }
 
-
-.form{
+.form {
+    /* RESPONSIVE WIDTH */
+    width: 100%;
+    max-width: 500px; 
     
+    /* Replaced fixed height with padding for better flow */
+    padding: 40px 20px;
     
-    margin: 20px;
-    padding-top: 20px;
     text-align: center;
     background-color: aliceblue;
-    width: 500px;
-    height: 300px;
     border-radius: 10px;
-    box-shadow: 10px;
     
-
+    /* Proper box-shadow syntax */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); 
 }
 
-#Year, #input{
-    width: 300px;
+/* RESPONSIVE INPUTS */
+#Year, #input {
+    width: 100%;
+    max-width: 300px;
+    padding: 5px; /* Makes it easier to tap on mobile */
+    margin-bottom: 10px;
 }
 
-#Image{
+#Image {
+    max-width: 100%; /* Prevents images from overflowing */
+    height: auto;
     border-radius: 15px;
+    margin-bottom: 15px;
 }
 
-#btn1, #db{
-    width: 100px;
+#btn1, #db {
+    width: 100%;
+    max-width: 100px;
+    padding: 8px 10px;
     background-color: cadetblue;
-    color:antiquewhite;
+    color: antiquewhite;
     border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
 }
 
-
-
-#indicator{
-    color:blue;
+#indicator {
+    color: blue;
+    margin-top: 15px;
+    display: block;
 }

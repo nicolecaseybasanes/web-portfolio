@@ -1,152 +1,133 @@
-*{
-    margin:0;
-    padding:0;
-    
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* CRITICAL: Prevents padding from causing overflow */
 }
 
-
-
-header{
-background-color: rgb(68, 107, 68);
-padding: 20px;
-margin:0%;
-color: azure;
-list-style: none;
-display: flex;
-align-items: center;
-justify-content: space-between;
-position: sticky;
-top: 0;
-
+body {
+    overflow-x: hidden; /* Prevents horizontal scrolling */
 }
 
-.headername{
-display: flex;
-justify-content: flex-start;
-
-
-}
-
-.homenav{
-    display:flex;
-    justify-content: flex-end;
-    list-style: none;
-    gap: 50px;
-    
-   
-}
-
-.homenav a{
-    text-decoration: none;
+/* --- HEADER --- */
+header {
+    background-color: rgb(68, 107, 68);
+    padding: 20px;
     color: azure;
-    
-    
-    
-   
-    
-}
-
-.homenav a:hover{
-    color:yellow
-  
-    
-}
-
-
-
-
-.homefooter{
-background-color: rgb(68, 107, 68);
-padding: 20px;
-margin:0%;
-text-align: center;
-margin-top: 0;
-color:rgb(255, 255, 255)
-
-}
-
-.homemain{
-padding: 60px 40px;
-}
-
-#home{
-    background-color: rgb(222, 255, 222);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 40px;
-    flex-wrap: wrap;
-    padding: 60px 40px;
-     margin: 20px;
-
-
+    position: sticky;
+    top: 0;
+    flex-wrap: wrap; /* Allows nav to drop below the name on small screens */
+    gap: 15px;
+    z-index: 100;
 }
 
-#home h2{
+.headername {
     display: flex;
     justify-content: flex-start;
-    
-   
 }
 
-#home p{
-   display: flex;
-   justify-content: flex-start;
-    
-    
-}
-
-
-#home img{
-    border-radius: 65px;
+.homenav {
     display: flex;
     justify-content: flex-end;
-    margin-left: auto;
-
+    list-style: none;
+    gap: 30px; /* Reduced from 50px so it fits better */
+    flex-wrap: wrap; /* Allows links to wrap if screen is too narrow */
 }
 
+.homenav a {
+    text-decoration: none;
+    color: azure;
+    transition: color 0.3s;
+}
 
-#aboutme{
-    background-color: rgb(214, 255, 214);
+.homenav a:hover {
+    color: yellow;
+}
+
+/* --- FOOTER & MAIN --- */
+.homefooter {
+    background-color: rgb(68, 107, 68);
+    padding: 20px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.homemain {
+    padding: 40px 20px; /* Reduced padding for mobile */
+}
+
+/* --- SHARED SECTION STYLES --- */
+#home, #aboutme, #projects, #contacts {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 40px;
     flex-wrap: wrap;
-    margin: 20px;
-   
+    
+    /* Changed margin to ensure it doesn't cause overflow */
+    margin: 20px auto;
+    width: calc(100% - 40px);
+    padding: 40px;
+    border-radius: 15px; 
 }
 
-#aboutme img{
+/* Individual background colors */
+#home {
+    background-color: rgb(222, 255, 222);
+}
+
+#aboutme, #projects, #contacts {
+    background-color: rgb(214, 255, 214);
+}
+
+/* Fix text containers so they take up proper space next to images */
+#home > div, #aboutme > div, #projects > div, #contacts > div {
+    flex: 1;
+    min-width: 280px; /* Prevents text from squishing too much before wrapping */
+}
+
+/* Removed display:flex from text elements so they wrap naturally */
+#home h2, #home p {
+    margin-bottom: 10px;
+}
+
+/* --- IMAGES --- */
+#home img, #aboutme img, #projects img, #contacts img {
     border-radius: 65px;
-    display: flex;
-    justify-content:space-evenly;
-    margin-left: auto;
+    max-width: 100%; /* CRITICAL: Makes images shrink on smaller screens */
+    height: auto;
+    display: block;
+    object-fit: cover;
+    margin-left: auto; /* Pushes image to the right on desktop */
 }
 
-#projects{
-    background-color: rgb(214, 255, 214);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    flex-wrap: wrap;
-    margin: 20px;
-}
+/* =========================================
+   MOBILE RESPONSIVENESS (Screens < 768px)
+   ========================================= */
+@media (max-width: 768px) {
+    /* Stack Header */
+    header {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .homenav {
+        justify-content: center;
+        gap: 15px;
+    }
 
-#projects img{
-    border-radius: 65px;
-    display: flex;
-    justify-content:space-evenly;
-    margin-left: auto;
-}
+    /* Stack Text and Images */
+    #home, #aboutme, #projects, #contacts {
+        flex-direction: column; 
+        padding: 25px;
+        text-align: center;
+    }
 
-#contacts{
-    background-color: rgb(214, 255, 214);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    flex-wrap: wrap;
-    margin: 20px;
+    /* Center images on mobile */
+    #home img, #aboutme img, #projects img, #contacts img {
+        margin: 20px auto 0 auto; 
+    }
 }
