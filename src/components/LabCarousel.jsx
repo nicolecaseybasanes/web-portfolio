@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ActivityCard from './ActivityCard';
 import ProjectModal from './ProjectModal';
-import ScrollReveal from './ScrollReveal'; // ADDED
+import ScrollReveal from './ScrollReveal';
 
 const activitiesData = {
   Midterm: [
@@ -56,7 +56,7 @@ export default function LabCarousel() {
     <div className="w-full max-w-[1400px] mx-auto px-4 pt-32 pb-24 overflow-hidden relative">
       
       {/* Header & Filters */}
-      <ScrollReveal direction="up" delay={0.1}> {/* ADDED */}
+      <ScrollReveal direction="up" delay={0.1}>
         <div id="activities" className="flex flex-col items-center text-center mb-12 md:mb-16 px-6 scroll-mt-32">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 transition-colors">
@@ -65,9 +65,6 @@ export default function LabCarousel() {
                 Activities
               </span>
             </h2>
-            <p className="text-gray-500 dark:text-gray-400 max-w-md text-sm transition-colors mb-6 mx-auto">
-              
-            </p>
           </div>
 
           <div className="flex items-center justify-center gap-3">
@@ -93,15 +90,18 @@ export default function LabCarousel() {
             </button>
           </div>
         </div>
-      </ScrollReveal> {/* ADDED */}
+      </ScrollReveal>
 
-      {/* Carousel Container */}
-      <ScrollReveal direction="up" delay={0.2}> {/* ADDED */}
-        <div className="relative flex justify-center items-center h-[600px] md:h-[450px]">
+      {/* CAROUSEL CONTAINER - 3D Perspective */}
+      <ScrollReveal direction="up" delay={0.2}>
+        <div 
+          className="relative flex justify-center items-center h-[450px] md:h-[600px]" 
+          style={{ perspective: "1200px" }} // Binaba natin nang konti para mas visible ang 3D tilt
+        >
           
-          {/* Cards Track */}
           <div 
             className="flex items-center justify-center w-full relative h-full select-none touch-pan-y"
+            style={{ transformStyle: "preserve-3d" }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -116,18 +116,48 @@ export default function LabCarousel() {
                 position = 2; 
               }
 
+              let cardStyle = {};
+              
+              // 3D COVER FLOW MATH (Gayahin ang reference)
+              if (position === 0) {
+                // Center Card: Deretso, malaki, may shadow
+                cardStyle = {
+                  transform: 'translateX(0%) translateZ(0px) rotateY(0deg) scale(1)',
+                  zIndex: 30,
+                  opacity: 1,
+                  boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.2)',
+                };
+              } else if (position === -1) {
+                // Left Card: Naka-angulo paharap sa gitna, bahagyang itinulak sa likod
+                cardStyle = {
+                  transform: 'translateX(-65%) translateZ(-120px) rotateY(25deg) scale(0.9)',
+                  zIndex: 10,
+                  opacity: 0.9, // 0.9 para kita pa rin ang kulay
+                  boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+                };
+              } else if (position === 1) {
+                // Right Card: Naka-angulo paharap sa gitna, bahagyang itinulak sa likod
+                cardStyle = {
+                  transform: 'translateX(65%) translateZ(-120px) rotateY(-25deg) scale(0.9)',
+                  zIndex: 10,
+                  opacity: 0.9,
+                  boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+                };
+              } else {
+                // Hidden Cards
+                cardStyle = {
+                  transform: 'translateX(0%) translateZ(-300px) scale(0.5)',
+                  opacity: 0,
+                  zIndex: 0,
+                  pointerEvents: 'none',
+                };
+              }
+
               return (
                 <div 
                   key={activity.id}
-                  className={`absolute transition-all duration-500 ease-out cursor-pointer ${
-                    position === 2 ? 'pointer-events-none' : ''
-                  }`}
-                  style={{
-                    transform: `translateX(${position * 80}%) scale(${position === 0 ? 1 : 0.85})`,
-                    opacity: position === 2 ? 0 : (position === 0 ? 1 : 0.35),
-                    zIndex: position === 0 ? 20 : 10,
-                    filter: position === 0 ? 'none' : 'blur(2px)'
-                  }}
+                  className="absolute transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer"
+                  style={cardStyle}
                   onClick={() => {
                     if (position !== 0) setCurrentIndex(index);
                   }}
@@ -142,43 +172,48 @@ export default function LabCarousel() {
             })}
           </div>
 
-          {/* Left Arrow */}
-          <button 
-            onClick={prevSlide}
-            className="absolute left-0 md:left-4 lg:left-12 top-1/2 -translate-y-1/2 z-40 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 dark:bg-[#1a221e]/90 backdrop-blur-sm shadow-xl flex items-center justify-center text-gray-600 dark:text-white hover:scale-110 transition-transform"
-          >
-            <ChevronLeft size={24} />
-          </button>
-          
-          {/* Right Arrow */}
-          <button 
-            onClick={nextSlide}
-            className="absolute right-0 md:right-4 lg:right-12 top-1/2 -translate-y-1/2 z-40 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 dark:bg-[#1a221e]/90 backdrop-blur-sm shadow-xl flex items-center justify-center text-gray-600 dark:text-white hover:scale-110 transition-transform"
-          >
-            <ChevronRight size={24} />
-          </button>
-
         </div>
-      </ScrollReveal> {/* ADDED */}
 
-      {/* Dots */}
-      <ScrollReveal direction="up" delay={0.3}> {/* ADDED */}
-        <div className="flex justify-center gap-2 mt-8 md:mt-12">
-          {currentActivities.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex 
-                  ? 'bg-[var(--accent-mint)] dark:bg-[var(--accent-mint-glow)] w-8' 
-                  : 'bg-gray-300 dark:bg-gray-600 w-2'
-              }`}
-            />
-          ))}
+        {/* Bottom Controls */}
+        <div className="flex flex-col items-center justify-center mt-0 md:mt-6 gap-4">
+          <div className="flex items-center justify-center gap-5 md:gap-6">
+            <button 
+              onClick={prevSlide}
+              className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 dark:bg-[#1a221e]/90 backdrop-blur-sm shadow-lg flex items-center justify-center text-gray-600 dark:text-white hover:scale-110 transition-transform border border-gray-100 dark:border-white/5"
+            >
+              <ChevronLeft size={24} />
+            </button>
+
+            <div className="flex gap-2">
+              {currentActivities.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    index === currentIndex 
+                      ? 'bg-[var(--accent-mint)] dark:bg-[var(--accent-mint-glow)] w-8' 
+                      : 'bg-gray-300 dark:bg-gray-600 w-2.5 hover:bg-gray-400 dark:hover:bg-gray-500'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            <button 
+              onClick={nextSlide}
+              className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 dark:bg-[#1a221e]/90 backdrop-blur-sm shadow-lg flex items-center justify-center text-gray-600 dark:text-white hover:scale-110 transition-transform border border-gray-100 dark:border-white/5"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
+
+          <span className="text-[11px] font-bold tracking-[0.2em] text-gray-400 dark:text-gray-500 uppercase mt-2">
+            {currentIndex + 1} <span className="text-gray-300 dark:text-gray-600 mx-1">/</span> {currentActivities.length}
+          </span>
         </div>
-      </ScrollReveal> {/* ADDED */}
 
-      {/* Render Modal */}
+      </ScrollReveal>
+
       <ProjectModal 
         project={selectedProject} 
         onClose={() => setSelectedProject(null)} 
