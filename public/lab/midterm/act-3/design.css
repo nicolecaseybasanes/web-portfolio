@@ -1,133 +1,340 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* CRITICAL: Prevents padding from causing overflow */
+:root {
+   
+    --primary: #4A7C59; 
+    --white: #FFFFFF;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
 }
 
 body {
-    overflow-x: hidden; /* Prevents horizontal scrolling */
+    font-family: "Segoe UI", system-ui, Arial, sans-serif;
+    background: var(--white);
+    color: var(--primary);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* --- HEADER --- */
+@keyframes fade-in    { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-up    { from { opacity: 0; transform: translateY(50px); }
+                        to   { opacity: 1; transform: translateY(0); } }
+@keyframes grow-x     { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
 header {
-    background-color: rgb(68, 107, 68);
-    padding: 20px;
-    color: azure;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--primary);
+    color: var(--white);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: sticky;
-    top: 0;
-    flex-wrap: wrap; /* Allows nav to drop below the name on small screens */
-    gap: 15px;
-    z-index: 100;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 18px clamp(20px, 5vw, 60px);
+    border-bottom: 3px solid rgba(255, 255, 255, .22);
+    animation: fade-in .7s ease both;
 }
 
 .headername {
-    display: flex;
-    justify-content: flex-start;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    animation: fade-in 1s .15s ease both;
 }
 
 .homenav {
     display: flex;
-    justify-content: flex-end;
     list-style: none;
-    gap: 30px; /* Reduced from 50px so it fits better */
-    flex-wrap: wrap; /* Allows links to wrap if screen is too narrow */
+    gap: clamp(16px, 3vw, 34px);
+    flex-wrap: wrap;
 }
 
 .homenav a {
+    position: relative;
+    display: inline-block;
+    color: var(--white);
     text-decoration: none;
-    color: azure;
-    transition: color 0.3s;
+    font-weight: 600;
+    font-size: .95rem;
+    letter-spacing: .4px;
+    padding: 4px 0;
+    transition: opacity .25s ease;
 }
 
-.homenav a:hover {
-    color: yellow;
+.homenav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: var(--white);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .35s cubic-bezier(.2, .7, .3, 1);
 }
 
-/* --- FOOTER & MAIN --- */
-.homefooter {
-    background-color: rgb(68, 107, 68);
-    padding: 20px;
-    text-align: center;
-    color: rgb(255, 255, 255);
+.homenav a:hover::after,
+.homenav a:focus-visible::after { transform: scaleX(1); }
+
+.homenav a:focus-visible { outline: none; }
+
+main {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 50px 20px 10px;
+    counter-reset: section;
 }
 
-.homemain {
-    padding: 40px 20px; /* Reduced padding for mobile */
-}
-
-/* --- SHARED SECTION STYLES --- */
 #home, #aboutme, #projects, #contacts {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    flex-wrap: wrap;
-    
-    /* Changed margin to ensure it doesn't cause overflow */
-    margin: 20px auto;
-    width: calc(100% - 40px);
-    padding: 40px;
-    border-radius: 15px; 
+    position: relative;
+    border-radius: 24px;
+    margin: 0 auto 44px;
+    padding: clamp(30px, 5vw, 60px);
+    overflow: hidden;
+    transition: transform .45s cubic-bezier(.2, .7, .3, 1),
+                box-shadow .45s ease;
 }
 
-/* Individual background colors */
-#home {
-    background-color: rgb(222, 255, 222);
-}
+#aboutme, #projects, #contacts { counter-increment: section; }
 
-#aboutme, #projects, #contacts {
-    background-color: rgb(214, 255, 214);
-}
-
-/* Fix text containers so they take up proper space next to images */
-#home > div, #aboutme > div, #projects > div, #contacts > div {
-    flex: 1;
-    min-width: 280px; /* Prevents text from squishing too much before wrapping */
-}
-
-/* Removed display:flex from text elements so they wrap naturally */
-#home h2, #home p {
-    margin-bottom: 10px;
-}
-
-/* --- IMAGES --- */
-#home img, #aboutme img, #projects img, #contacts img {
-    border-radius: 65px;
-    max-width: 100%; /* CRITICAL: Makes images shrink on smaller screens */
-    height: auto;
+#aboutme h1::before,
+#projects h2::before,
+#contacts h2::before {
+    content: "0" counter(section) "  —  ";
+    font-size: .8em;
+    letter-spacing: 2px;
+    opacity: .55;
     display: block;
-    object-fit: cover;
-    margin-left: auto; /* Pushes image to the right on desktop */
+    margin-bottom: 6px;
 }
 
-/* =========================================
-   MOBILE RESPONSIVENESS (Screens < 768px)
-   ========================================= */
+#home {
+    background: var(--primary);
+    color: var(--white);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: clamp(28px, 5vw, 64px);
+    row-gap: 18px;
+    animation: fade-up .95s cubic-bezier(.2, .7, .3, 1) both;
+    /* Updated shadow to match the new green */
+    box-shadow: 0 26px 50px -28px rgba(74, 124, 89, .85);
+}
+
+#home h2 {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: clamp(1.9rem, 4.6vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: .5px;
+}
+
+#home p {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 46ch;
+    opacity: .92;
+}
+
+#aboutme,
+#projects {
+    background: var(--white);
+    border: 2px solid var(--primary);
+    box-shadow: 0 18px 40px -30px rgba(74, 124, 89, .9);
+}
+
+#aboutme {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: clamp(28px, 5vw, 64px);
+    row-gap: 18px;
+}
+
+#aboutme h1 {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+    letter-spacing: .5px;
+}
+
+#aboutme p {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 52ch;
+}
+
+#projects {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(20px, 3vw, 32px);
+}
+
+#projects h2 {
+    grid-column: 1 / -1;
+    font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+    letter-spacing: .5px;
+}
+
+#contacts {
+    background: var(--primary);
+    color: var(--white);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding-block: clamp(56px, 9vw, 100px);
+    box-shadow: 0 26px 50px -28px rgba(74, 124, 89, .85);
+}
+
+#contacts h2 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    letter-spacing: 1px;
+}
+
+#contacts h2::before { opacity: .7; }
+
+#home img,
+#aboutme img,
+#projects img {
+    display: block;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+#home img {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: clamp(180px, 24vw, 270px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+#aboutme img {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: clamp(160px, 22vw, 250px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 6px solid var(--primary);
+    transition: transform .45s cubic-bezier(.2, .7, .3, 1);
+}
+
+#aboutme img:hover { transform: scale(1.06) rotate(-2deg); }
+
+#projects img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border: 3px solid var(--primary);
+    transition: transform .45s cubic-bezier(.2, .7, .3, 1),
+                box-shadow .45s ease;
+}
+
+#projects img:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 26px 40px -24px rgba(74, 124, 89, .95);
+}
+
+#aboutme:hover,
+#projects:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 55px -30px rgba(74, 124, 89, .95);
+}
+
+@supports (animation-timeline: view()) {
+    #aboutme, #projects, #contacts {
+        animation: fade-up linear both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 35%;
+    }
+
+    #aboutme::before,
+    #projects::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: var(--primary);
+        transform-origin: left;
+        animation: grow-x linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 60%;
+    }
+}
+
+footer { animation: fade-in 1s ease both; }
+
+.homefooter {
+    background: var(--primary);
+    color: var(--white);
+    text-align: center;
+    padding: 26px;
+    margin-top: 20px;
+}
+
+.homefooter h3 {
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--white);
+}
+
 @media (max-width: 768px) {
-    /* Stack Header */
+    html { scroll-padding-top: 140px; }
+
     header {
         flex-direction: column;
-        justify-content: center;
         text-align: center;
+        padding: 16px;
     }
-    
+
     .homenav {
         justify-content: center;
-        gap: 15px;
+        gap: 18px;
     }
 
-    /* Stack Text and Images */
-    #home, #aboutme, #projects, #contacts {
-        flex-direction: column; 
-        padding: 25px;
+    main { padding: 30px 14px 10px; }
+
+    #home,
+    #aboutme {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
+        row-gap: 22px;
     }
 
-    /* Center images on mobile */
-    #home img, #aboutme img, #projects img, #contacts img {
-        margin: 20px auto 0 auto; 
+    #home p,
+    #aboutme p { max-width: none; }
+
+    #home img,
+    #aboutme img { margin-top: 6px; }
+
+    #projects { grid-template-columns: 1fr; }
+    #projects h2 { text-align: center; }
+
+    #aboutme:hover,
+    #projects:hover,
+    #projects img:hover { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
     }
 }

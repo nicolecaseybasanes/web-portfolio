@@ -4,24 +4,29 @@ import Navbar from './components/Navbar';
 import Hero from './pages/Hero';
 import About from './pages/About';
 import Work from './pages/Work';
+import SplashScreen from './components/SplashScreen';
 
-// This component listens for URL hash changes (like #activities) and scrolls to them
 function ScrollToHashElement() {
   const { hash, pathname } = useLocation();
 
   useEffect(() => {
+    // 1. I-disable ang browser scroll restoration (para hindi mag-jump sa huling scroll)
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    // 2. I-force sa taas (Hero section) kapag nagbago ang page
+    window.scrollTo(0, 0);
+
+    // 3. Kung may hash (e.g. /#activities), doon pumunta
     if (hash) {
       const id = hash.replace('#', '');
       const element = document.getElementById(id);
       if (element) {
-        // Timeout ensures the page has fully rendered before scrolling
         setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
         }, 100); 
       }
-    } else {
-      // Scroll to top if there is no hash (e.g., when clicking "Home" in the navbar)
-      window.scrollTo(0, 0);
     }
   }, [hash, pathname]);
 
@@ -31,6 +36,7 @@ function ScrollToHashElement() {
 function App() {
   return (
     <Router>
+      <SplashScreen />
       <ScrollToHashElement />
       <div className="min-h-screen font-sans">
         <Navbar />

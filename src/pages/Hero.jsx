@@ -1,41 +1,52 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import LabCarousel from '../components/LabCarousel';
 import Contact from '../components/Contact';
-import ScrollReveal from '../components/ScrollReveal'; // ADDED
 
 export default function Hero() {
   return (
     <div className="w-full">
-      {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center pt-20 pb-10">
         
-        <ScrollReveal direction="down" delay={0.1}> {/* ADDED */}
-          {/* Top Label */}
-          <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase text-[var(--accent-mint)] dark:text-[var(--accent-mint-glow)] mb-8 flex items-center gap-2 transition-colors duration-300">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 6.9, duration: 0.8, ease: "easeOut" }}
+          className="flex flex-col items-center w-full"
+        >
+          <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase text-[var(--accent-mint)] dark:text-[var(--accent-mint-glow)] mb-8 flex items-center justify-center gap-2 transition-colors duration-300">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-mint)] dark:bg-[var(--accent-mint-glow)]"></span>
             
           </span>
           
-          {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-semibold leading-tight max-w-4xl text-gray-900 dark:text-white mb-2 transition-colors duration-300">
             I love designing <br /> interfaces that is
           </h1>
 
-          {/* Italic Serif Sub-headline */}
+          {/* TARGET NA NATIN NGAYON AY ANG TULDOK SA DULO */}
           <h2 className="italic font-serif text-[var(--accent-mint)] dark:text-[var(--accent-mint-glow)] text-6xl md:text-8xl mb-8 transition-colors duration-300">
-            effortlessly simple.
+            effortlessly simple<span className="dot-target inline-block">.</span>
           </h2>
+        </motion.div>
 
-          {/* Subtitle */}
-          <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 max-w-md mx-auto mb-12 transition-colors duration-300">
-            I'm Nicole Casey! I am into minimalist and soft neumorphism <br className="hidden md:block" /> UI designs.
-          </p>
+        <motion.p 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 7.2, duration: 0.8, ease: "easeOut" }}
+          className="text-sm md:text-base text-gray-500 dark:text-gray-400 max-w-md mx-auto mb-12 transition-colors duration-300"
+        >
+          I'm Nicole Casey! I am into minimalist and soft neumorphism <br className="hidden md:block" /> UI designs.
+        </motion.p>
 
-          {/* Profile Pill Badge */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 7.4, duration: 0.8, ease: "easeOut" }}
+        >
           <Link 
             to="/about" 
-            className="group flex items-center p-2 pr-3 rounded-full neu-card bg-white dark:bg-[#1a221e] transition-all duration-300 hover:scale-105 w-fit mx-auto"
+            className="group flex items-center p-2 pr-3 rounded-full neu-card bg-white dark:bg-[#1a221e] transition-all duration-300 hover:scale-105"
           >
             <img 
               src="/profile.png" 
@@ -52,14 +63,10 @@ export default function Hero() {
               <ArrowRight size={18} className="text-[var(--accent-mint)] dark:text-[var(--accent-mint-glow)] transition-colors duration-300" />
             </div>
           </Link>
-        </ScrollReveal> {/* ADDED */}
-
+        </motion.div>
       </section>
 
-      {/* Carousel appended below Hero */}
       <LabCarousel />
-
-      {/* Contact Section appended below Carousel */}
       <Contact />
     </div>
   );

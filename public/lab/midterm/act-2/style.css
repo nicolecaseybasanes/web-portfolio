@@ -1,85 +1,338 @@
+
+:root {
+    --army: #4B5320;
+    --white: #FFFFFF;
+}
+
+
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* CRITICAL: Prevents padding from breaking widths */
+    box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    /* Added a wrapper padding so margins don't push the page off-screen */
-    padding: 10px; 
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--white);
+    color: var(--army);
+    padding: 10px;
+    min-height: 100vh;
+    line-height: 1.6;
 }
 
 /* --- HEADERS --- */
 .homeheader, .regheader, .gradesheader, .profileheader {
-    background-color: rgb(68, 107, 68);
-    padding: 20px;
+    background: var(--army);
+    padding: 28px 20px;
     text-align: center;
-    color: rgb(255, 255, 255);
-    border-radius: 10px 10px 0 0; /* Optional: rounds the top corners */
+    color: var(--white);
+    border-radius: 14px 14px 0 0;
+}
+
+.homeheader h1, .regheader h1,
+.gradesheader h1, .profileheader h1 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    letter-spacing: .5px;
+}
+
+.homeheader h5, .regheader h5,
+.gradesheader h5, .profileheader h5 {
+    margin-top: 6px;
+    font-weight: 500;
+    font-size: .9rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--white);
 }
 
 /* --- NAVIGATION --- */
 .homenav, .regnav, .gradesnav, .profilenav {
-    background-color: rgb(231, 255, 231);
+    background: var(--white);
     display: flex;
-    flex-wrap: wrap; /* CRITICAL: Allows links to wrap on small screens */
-    gap: 15px; /* Adds space between links instead of margins */
-    padding: 20px;
-    text-align: center;
+    flex-wrap: wrap;
     justify-content: space-evenly;
-    font-weight: bold;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-bottom: 3px solid var(--army);
+    font-weight: 700;
+}
+
+.homenav a, .regnav a, .gradesnav a, .profilenav a {
+    display: inline-block;
+    padding: 9px 20px;
+    border: 2px solid var(--army);
+    border-radius: 999px;
+    background: var(--white);
+    color: var(--army);
+    text-decoration: none;
+    font-size: .95rem;
+}
+
+.homenav a:hover, .regnav a:hover,
+.gradesnav a:hover, .profilenav a:hover {
+    background: var(--army);
+    color: var(--white);
+}
+
+.homenav a:focus-visible, .regnav a:focus-visible,
+.gradesnav a:focus-visible, .profilenav a:focus-visible {
+    outline: 3px solid var(--army);
+    outline-offset: 2px;
 }
 
 /* --- LAYOUT CONTAINER --- */
 .container {
     display: flex;
-    gap: 20px; /* Space between main and aside */
-    margin: 20px 0; /* Space above and below the container */
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px 0;
 }
 
 .homemain {
-    background-color: rgb(255, 255, 218);
-    flex: 1;
-    padding: 30px; /* Reduced from 75px */
-    border-radius: 10px;
+    flex: 1 1 260px;
+    background: var(--white);
+    border: 2px solid var(--army);
+    padding: 30px;
+    border-radius: 14px;
 }
 
 .homeaside {
-    background-color: rgb(255, 255, 218);
-    flex: 3;
-    padding: 30px; /* Reduced from 50px */
+    flex: 3 1 400px;
+    background: var(--white);
+    border: 2px solid var(--army);
+    padding: 30px;
+    border-radius: 14px;
+}
+
+/* --- CARD --- */
+.card {
+    background: var(--white);
+    width: 100%;
+    max-width: 700px;
+    margin: 24px auto;
+    padding: 28px;
+    border: 2px solid var(--army);
+    border-radius: 14px;
+}
+
+/* --- FORMS --- */
+form {
+    font-size: .98rem;
+    color: var(--army);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="file"],
+select,
+textarea {
+    display: block;
+    width: 100%;
+    margin: 6px 0 14px;
+    padding: 11px 14px;
+    font: inherit;
+    color: var(--army);
+    background: var(--white);
+    border: 2px solid var(--army);
     border-radius: 10px;
 }
 
-.card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 100%; /* Changed from max-width 700px to 100% */
-    max-width: 700px;
-    margin: 0 auto;
-    box-shadow: 0 2px 6px rgba(0,0,0,.2);
+input::placeholder,
+textarea::placeholder {
+    color: var(--army);
+    opacity: 1;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid var(--army);
+    outline-offset: 2px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    accent-color: var(--army);
+    width: 17px;
+    height: 17px;
+    margin: 0 6px 0 2px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/* --- BUTTONS --- */
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+    font: inherit;
+    font-weight: 700;
+    padding: 11px 26px;
+    margin: 6px 8px 6px 0;
+    border-radius: 999px;
+    border: 2px solid var(--army);
+    cursor: pointer;
+}
+
+input[type="submit"] {
+    background: var(--army);
+    color: var(--white);
+}
+
+input[type="submit"]:hover {
+    background: var(--white);
+    color: var(--army);
+}
+
+input[type="reset"] {
+    background: var(--white);
+    color: var(--army);
+}
+
+input[type="reset"]:hover {
+    background: var(--army);
+    color: var(--white);
+}
+
+input[type="button"] {
+    background: var(--white);
+    color: var(--army);
+}
+
+input[type="button"]:hover {
+    background: var(--army);
+    color: var(--white);
+}
+
+input[type="image"] {
+    height: 42px;
+    width: auto;
+    vertical-align: middle;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+input[type="submit"]:focus-visible,
+input[type="reset"]:focus-visible,
+input[type="button"]:focus-visible {
+    outline: 3px solid var(--army);
+    outline-offset: 3px;
+}
+
+/* --- TABLE --- */
+table {
+    width: 100%;
+    max-width: 900px;
+    margin: 24px auto;
+    background: var(--white);
+    border: 2px solid var(--army);
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+caption {
+    caption-side: top;
+    padding: 16px;
+    background: var(--army);
+    color: var(--white);
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--army);
+}
+
+th, td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--army);
+    color: var(--army);
+    background: var(--white);
+}
+
+th {
+    background: var(--army);
+    color: var(--white);
+    font-size: .82rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+tr:hover td {
+    background: var(--army);
+    color: var(--white);
+}
+
+tr:last-child td {
+    border-bottom: none;
 }
 
 /* --- FOOTERS --- */
 .homefooter, .regfooter, .gradesfooter, .profilefooter {
-    background-color: rgb(68, 107, 68);
+    background: var(--army);
+    color: var(--white);
     padding: 20px;
     text-align: center;
-    color: rgb(255, 255, 255);
-    border-radius: 0 0 10px 10px; /* Optional: rounds the bottom corners */
+    border-radius: 0 0 14px 14px;
+}
+
+.homefooter h3, .regfooter h3,
+.gradesfooter h3, .profilefooter h3 {
+    font-size: .95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--white);
 }
 
 /* =========================================
-   MOBILE RESPONSIVENESS (Screens < 768px)
+   MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column; /* Stacks Main and Aside vertically on mobile */
+        flex-direction: column;
     }
-    
+
     .homemain, .homeaside {
-        padding: 20px; /* Reduces padding further on small screens */
+        padding: 20px;
+    }
+
+    .homeheader, .regheader, .gradesheader, .profileheader {
+        padding: 20px 14px;
+    }
+
+    .homenav, .regnav, .gradesnav, .profilenav {
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .homenav a, .regnav a, .gradesnav a, .profilenav a {
+        padding: 8px 14px;
+        font-size: .85rem;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    table {
+        font-size: .85rem;
+    }
+
+    th, td {
+        padding: 10px 8px;
+    }
+
+    caption {
+        font-size: 1rem;
+        letter-spacing: 1px;
     }
 }

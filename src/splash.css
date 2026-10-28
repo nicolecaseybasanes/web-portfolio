@@ -1,0 +1,220 @@
+:root {
+  --mint: #eef4ec; 
+  --green: #2e8b34; 
+  --green-dark: #236d28; 
+  --lime: #a3ff9b; 
+  --ink: #0e1a2b; 
+  --cw: clamp(230px, 36vw, 480px); 
+}
+
+/* =====================================================================
+   SPLASH (LIGHT MODE DEFAULT)
+   ===================================================================== */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999; 
+  overflow: hidden;
+  background: var(--mint); 
+  
+  --dx: 50vw; 
+  --dy: 45vh; 
+  --dr: 4px; 
+
+  clip-path: circle(150% at 50% 45%);
+  
+  animation: splash-exit 1.5s cubic-bezier(0.85, 0, 0.15, 1) 7.2s forwards;
+}
+
+@keyframes splash-exit {
+  0% {
+    clip-path: circle(150% at 50% 45%);
+    opacity: 1;
+  }
+  80% {
+    clip-path: circle(var(--dr) at var(--dx) var(--dy));
+    opacity: 1; 
+  }
+  100% {
+    clip-path: circle(var(--dr) at var(--dx) var(--dy));
+    opacity: 0; 
+  }
+}
+
+/* ----- Flood (Light Mode) ----- */
+.flood {
+  position: absolute;
+  inset: 0;
+  background: var(--green);
+  opacity: 0;
+  animation: flood-in 0.3s ease-in 5.1s forwards; 
+  z-index: 5;
+}
+
+@keyframes flood-in { to { opacity: 1; } }
+
+/* ----- Text (Light Mode) ----- */
+.splash-name {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: .6rem;
+  text-align: center;
+  color: #ffffff;
+  opacity: 0;
+  animation: rise .9s cubic-bezier(.2, .8, .2, 1) 5.4s forwards, fade-out .5s ease-in 6.8s forwards;
+  z-index: 10; 
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-out {
+  to { opacity: 0; transform: translateY(-20px); }
+}
+
+.splash-name b { font: italic 500 clamp(2.4rem, 8vw, 5rem)/1 "Lora", Georgia, serif; }
+.splash-name span {
+  font: 600 .8rem/1 "Inter", sans-serif;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  opacity: .8;
+}
+
+/* =====================================================================
+   THE CAT 
+   ===================================================================== */
+.cat-pos {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: var(--cw);
+  margin-left: calc(var(--cw) / -2);
+  z-index: 2; 
+}
+
+.cat-rise {
+  transform: translateY(105%);
+  animation: peek 3.2s forwards .8s;
+}
+
+@keyframes peek {
+  0% { transform: translateY(105%); animation-timing-function: ease-out; }
+  22% { transform: translateY(78%); animation-timing-function: ease-in-out; }
+  30% { transform: translateY(78%); animation-timing-function: ease-in-out; }
+  52% { transform: translateY(52%); animation-timing-function: ease-in-out; }
+  60% { transform: translateY(52%); animation-timing-function: ease-in-out; }
+  100% { transform: translateY(25%); }
+}
+
+.cat-jump {
+  transform-origin: 50% 100%;
+  animation: jump 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards 4.9s;
+}
+
+@keyframes jump {
+  0% { transform: translateY(0) scale(1) rotate(0); }
+  30% { transform: translateY(-15vh) scale(1.2) rotate(-5deg); }
+  100% { transform: translateY(-5vh) scale(60) rotate(0); }
+}
+
+.cat-squash {
+  transform-origin: 50% 100%;
+  animation: crouch .35s ease-in-out 4.55s forwards;
+}
+
+@keyframes crouch { to { transform: scale(1.06, .86); } }
+
+.cat { display: block; width: 100%; height: auto; overflow: visible; }
+.cat * { transform-box: fill-box; }
+
+/* ----- Cat Colors (Light Mode) ----- */
+.c-head { fill: var(--green); }
+.c-ear { fill: var(--green); stroke: var(--green); stroke-width: 10; stroke-linejoin: round; }
+.c-ear-in { fill: var(--lime); opacity: .85; }
+.c-stripe { fill: none; stroke: var(--green-dark); stroke-width: 7; stroke-linecap: round; }
+.c-muzzle { fill: #cdeaca; }
+.c-nose { fill: var(--green-dark); }
+.c-mouth { fill: none; stroke: var(--green-dark); stroke-width: 3.5; stroke-linecap: round; }
+.c-whisk { fill: none; stroke: var(--green-dark); stroke-width: 2.2; stroke-linecap: round; }
+.e-white { fill: #f6fbe9; }
+.e-iris { fill: var(--lime); }
+.e-pupil { fill: var(--ink); transform-origin: center; animation: pupils .3s ease-out 4.55s forwards; }
+.e-shine { fill: #fff; }
+.c-paw { fill: #f6fbe9; stroke: var(--green-dark); stroke-width: 3; }
+.c-toe { fill: none; stroke: var(--green-dark); stroke-width: 3; stroke-linecap: round; }
+
+/* ----- Cat Life ----- */
+.eye { transform-origin: center; animation: blink .22s ease-in-out 3.3s 1, blink .22s ease-in-out 4.2s 1; }
+@keyframes blink { 50% { transform: scaleY(.08); } }
+
+.look { animation: look 2.0s ease-in-out 2.6s forwards; }
+@keyframes look {
+  0% { transform: translate(0, 0); }
+  18% { transform: translate(-9px, 0); }
+  40% { transform: translate(-9px, 0); }
+  58% { transform: translate(9px, 0); }
+  76% { transform: translate(9px, 0); }
+  100% { transform: translate(0, -2px); }
+}
+
+@keyframes pupils { to { transform: scale(1.9, 1.1); } }
+
+.ear-l { transform-origin: 80% 100%; animation: twitch-l .3s ease-in-out 2.0s 2, twitch-l .3s ease-in-out 3.6s 2; }
+.ear-r { transform-origin: 20% 100%; animation: twitch-r .3s ease-in-out 3.0s 2; }
+@keyframes twitch-l { 50% { transform: rotate(-9deg); } }
+@keyframes twitch-r { 50% { transform: rotate(9deg); } }
+
+.paw-l { animation: paw-l .4s ease-out 4.9s forwards; }
+.paw-r { animation: paw-r .4s ease-out 4.9s forwards; }
+@keyframes paw-l { to { transform: translate(-16px, -48px) rotate(-28deg); } }
+@keyframes paw-r { to { transform: translate(16px, -48px) rotate(28deg); } }
+
+.dot-target {
+  position: relative;
+  display: inline-block;
+}
+
+/* =====================================================================
+   DARK MODE OVERRIDES (Dito natin binago ang kulay para maging mint)
+   ===================================================================== */
+.dark .splash {
+  background: var(--bg-dark); /* Magiging dark background sa simula */
+}
+
+.dark .flood {
+  background: var(--accent-mint-glow); /* Magiging light mint green ang flood */
+}
+
+.dark .splash-name {
+  color: var(--bg-dark); /* Gagawing dark ang text para mabasa sa light mint */
+}
+
+.dark .splash-name span {
+  color: var(--surface-dark);
+}
+
+/* Optional: Gawing light mint din ang pusa sa dark mode para bagay sa theme */
+.dark .c-head,
+.dark .c-ear {
+  fill: var(--accent-mint-glow);
+  stroke: var(--accent-mint-glow);
+}
+.dark .c-ear-in { fill: var(--bg-dark); }
+.dark .c-stripe { stroke: var(--surface-dark); }
+.dark .c-muzzle { fill: var(--surface-dark); }
+.dark .c-nose, .dark .c-mouth, .dark .c-whisk { stroke: var(--bg-dark); }
+.dark .c-nose { fill: var(--bg-dark); }
+.dark .e-white { fill: var(--bg-dark); }
+.dark .e-iris { fill: var(--accent-mint-glow); }
+.dark .e-pupil { fill: var(--accent-mint-glow); }
+.dark .e-shine { fill: var(--bg-dark); }
+.dark .c-paw { fill: var(--surface-dark); stroke: var(--bg-dark); }
+.dark .c-toe { stroke: var(--bg-dark); }
+
+@media (prefers-reduced-motion: reduce) {
+  .splash { display: none; }
+}

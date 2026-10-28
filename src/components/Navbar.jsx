@@ -1,26 +1,42 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Moon, Sun, Home, Users } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Navbar() {
-  const [dark, setDark] = useState(false);
+  // 1. Basahin kung may naka-save na theme sa localStorage
+  const [dark, setDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme');
+      return savedTheme === 'dark';
+    }
+    return false;
+  });
+
   const location = useLocation();
 
+  // 2. I-apply ang class at i-save sa localStorage kapag nagbago ang state
   useEffect(() => {
     if (dark) {
       document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   }, [dark]);
 
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50">
-      <div className="flex items-center gap-1.5 p-2 rounded-full bg-white/90 dark:bg-[#1a221e]/90 backdrop-blur-xl border border-white/40 dark:border-white/5 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] transition-all duration-300">
+    <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50">
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 7.6, duration: 0.8, ease: "easeOut" }}
+        className="flex items-center gap-1.5 p-2 rounded-full bg-white/90 dark:bg-[#1a221e]/90 backdrop-blur-xl border border-white/40 dark:border-white/5 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] transition-all duration-300"
+      >
         
-        {/* Home Tab */}
         <Link 
           to="/" 
           className={`flex items-center justify-center w-11 h-11 rounded-full transition-all duration-300 ease-out ${
@@ -34,7 +50,6 @@ export default function Navbar() {
 
         <div className="h-6 w-px bg-gray-200 dark:bg-gray-700/50 mx-1"></div>
 
-        {/* About Tab */}
         <Link 
           to="/about" 
           className={`flex items-center gap-2 px-3 md:px-4 py-2 rounded-full transition-all duration-300 ease-out ${
@@ -47,18 +62,15 @@ export default function Navbar() {
           <span className="hidden sm:inline text-sm">About</span>
         </Link>
 
-        {/* WORK TAB REMOVED HERE */}
-
         <div className="h-6 w-px bg-gray-200 dark:bg-gray-700/50 mx-1"></div>
 
-        {/* Dark Mode Toggle */}
         <button 
           onClick={() => setDark(!dark)} 
           className="flex items-center justify-center w-11 h-11 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white transition-all duration-300"
         >
           {dark ? <Sun size={20} /> : <Moon size={20} />}
         </button>
-      </div>
-    </nav>
+      </motion.div>
+    </div>
   );
 }
